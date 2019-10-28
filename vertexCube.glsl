@@ -1,9 +1,7 @@
 precision mediump float;
-attribute vec2 vPosition;
+attribute vec3 vPosition;
 attribute vec3 vColor;
 varying vec3 fColor;
-uniform vec3 vec;
-uniform float size;
 uniform vec3 theta;
 
 void main()
@@ -34,21 +32,5 @@ void main()
 		0.0, 0.0, 0.0, 1.0
 	);
 
-
-	mat4 scaling = mat4(
-		size, 0.0, 0.0, 0.0,
-		0.0, size, 0.0, 0.0,
-		0.0, 0.0, 1.0, 0.0,
-		0.0, 0.0, 0.0, 1.0
-	);
-
-	mat4 trans = mat4(
-		1.0, 0.0, 0.0, vec.x,
-		0.0, 1.0, 0.0, vec.y,
-		0.0, 0.0, 1.0, vec.z,
-		0.0, 0.0, 0.0, 1.0
-	);
-
-	gl_Position = vec4(vPosition, 0.0, 1.0) * scaling * rz * ry * rx;
-	gl_Position = gl_Position * trans;
+	gl_Position = vec4(vPosition, 1.0) * rz * ry * rx ;
 }
